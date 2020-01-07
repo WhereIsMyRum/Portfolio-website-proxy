@@ -29,6 +29,12 @@ services:
         build: ./backend
         command: "npm run dev"
         volumes:
-            - ./backend/:/usr/src/
+            - ./backend/controllers/:/usr/src/controllers/
+            - ./backend/middlewares/:/usr/src/middlewares/
+            - ./backend/routes/:/usr/src/routes/
+            - ./backend/services/:/usr/src/services/
+            - ./backend/utils/:/usr/src/utils/
+            - ./backend/config/:/usr/src/config/
+            - ./backend/app.js:/usr/src/app.js
         environment: 
             - REDIS_URL=redis://cache

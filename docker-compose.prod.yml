@@ -19,17 +19,14 @@ services:
 
     frontend:
         build: ./frontend
-        command: "npm run dev"
-        volumes: 
-            - ./frontend/app/:/usr/src/app/
+        command: "npm run start"
         depends_on: 
             - backend
 
     backend:
         build: ./backend
-        command: bash -c "npm install && npm run dev"
+        command: "npm run start"
         volumes:
-            - ./backend/app/:/usr/src/
             - ./backend/.aws/:/root/.aws/
         depends_on:
             - redis

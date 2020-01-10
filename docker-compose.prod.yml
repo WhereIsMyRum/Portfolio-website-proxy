@@ -18,13 +18,13 @@ services:
         command: ["redis-server", "--appendonly", "yes"]
 
     frontend:
-        build: ./frontend
+        image: whereismyrum/portfolio-frontend:latest
         command: "npm run start"
         depends_on: 
             - backend
 
     backend:
-        build: ./backend
+        image: whereismyrum/portfolio-backend:latest
         command: "npm run start"
         volumes:
             - ./backend/.aws/:/root/.aws/

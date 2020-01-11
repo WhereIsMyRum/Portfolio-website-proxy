@@ -8,6 +8,7 @@ services:
             - 443:443
         volumes:
             - ./nginx/conf.d/nginx.prod.conf:/etc/nginx/conf.d/nginx.conf
+        restart: always
         depends_on:
             - frontend
             - backend
@@ -16,10 +17,13 @@ services:
         image: redis:latest
         container_name: cache
         command: ["redis-server", "--appendonly", "yes"]
+        restart: always
+
 
     frontend:
         image: whereismyrum/portfolio-frontend:latest
         command: "npm run start"
+        restart: always
         depends_on: 
             - backend
 
@@ -28,6 +32,7 @@ services:
         command: "npm run start"
         volumes:
             - ./backend/.aws/:/root/.aws/
+        restart: always
         depends_on:
             - redis
         environment: 

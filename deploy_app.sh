@@ -9,12 +9,12 @@ DOCKER_COMPOSE_FILE="docker-compose.prod.yml"
 if [[ $# -lt 1 ]]
 then
     git pull
-    docker-compose -f $DOCKER_COMPOSE_FILE stop nginx
-    docker-compose -f $DOCKER_COMPOSE_FILE up nginx
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE stop nginx
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE up nginx
 else
-    docker-compose -f $DOCKER_COMPOSE_FILE pull "$DOCKER_IMAGE"
-    docker-compose -f $DOCKER_COMPOSE_FILE stop "$DOCKER_IMAGE"
-    docker-compose -f $DOCKER_COMPOSE_FILE up "$DOCKER_IMAGE" -d
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE pull "$DOCKER_IMAGE"
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE stop "$DOCKER_IMAGE"
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE up "$DOCKER_IMAGE" -d
 fi
 
 exit 0

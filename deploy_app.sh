@@ -10,11 +10,11 @@ if [[ $# -lt 1 ]]
 then
     git pull
     sudo docker-compose -f $DOCKER_COMPOSE_FILE stop nginx
-    sudo docker-compose -f $DOCKER_COMPOSE_FILE up nginx
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE up -d nginx
 else
     sudo docker-compose -f $DOCKER_COMPOSE_FILE pull "$DOCKER_IMAGE"
     sudo docker-compose -f $DOCKER_COMPOSE_FILE stop "$DOCKER_IMAGE"
-    sudo docker-compose -f $DOCKER_COMPOSE_FILE up "$DOCKER_IMAGE" -d
+    sudo docker-compose -f $DOCKER_COMPOSE_FILE up -d "$DOCKER_IMAGE"
 fi
 
 exit 0

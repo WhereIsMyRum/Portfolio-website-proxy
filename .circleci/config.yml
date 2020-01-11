@@ -1,44 +1,15 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2.1
 jobs:
-  build:
-    working_directory: ~/workdir
+  deploy:
     docker:
       - image: circleci/node:latest
-
     steps:
-      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "a1:a0:4a:f3:82:af:46:2e:bc:de:3d:a8:a1:54:2f:8b"
       - run:
-        name: update-npm
-        command: 'sudo npm install -g npm@latest'
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-
-      - run: 
-          name: install-npm
-          command: npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run:
-          name: Build and push Docker image
+          name: Deploy app to AWS EC2 via Docker
           command: |
-            echo 'export IMAGE_NAME=portfolio-website' >> $BASH_ENV
-            docker build -t whereismyrum/$IMAGE_NAME:latest
-            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --pasword-stdin
-            doceker  push whereismyrum/$IMAGE_NAME:latest
-
-      #- run:
-      #    name: Deploy app to AWS EC2 via Docker
-      #    command: |
-      #      ssh -i ubuntu@ec2-52-59-234-24.eu-central-1.compute.amazonaws.com "/bin/bash ./production/deploy_app.sh"
+            ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-59-234-24.eu-central-1.compute.amazonaws.com "cd production && git pull && /bin/bash deploy_app.sh"
 
       

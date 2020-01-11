@@ -8,7 +8,6 @@ DOCKER_COMPOSE_FILE="docker-compose.prod.yml"
 # Check for arguments
 if [[ $# -lt 1 ]]
 then
-    git pull
     sudo docker-compose -f $DOCKER_COMPOSE_FILE stop nginx
     sudo docker-compose -f $DOCKER_COMPOSE_FILE up -d nginx
 else

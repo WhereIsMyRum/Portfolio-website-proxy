@@ -7,6 +7,7 @@ services:
             - 6895:443
         volumes:
             - ./nginx/conf.d/nginx.prod.conf:/etc/nginx/conf.d/nginx.conf
+            - ./nginx/clear-cache.sh:/usr/src/scripts/clear-cache.sh
         restart: always
         depends_on:
             - frontend

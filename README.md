@@ -23,14 +23,14 @@ was created.
   <li class="technologies" hover="Redis">Redis</li>
    <li class="technologies" hover="Amazon Web Services">AWS</li>
    <li class="technologies" hover="Circle CI">Circle CI</li>
-   <li class="technologies" hover="Python">Bash</li>
+   <li class="technologies" hover="Bash">Bash</li>
 </ul>
 <h3 class="usage">How to use</h3>
 <div class="usage">To run the project:
  <ol>
    <li>Pull this repo</li>
    <li>Into the folder that contains the docker-compose.yml file, pull portfolio-frontend and portfolio-backend repos</li>
-   <li>Add neccessary host file entries (the url is http://frontend.docker)</li>
+   <li>Add neccessary hosts file entries (the url is http://frontend.docker)</li>
    <li>To run the project, simply type <i>docker-compose up</i> and the containers should start.</li>
    <li>To run the production build, type  <i>docker-compose -f docker-compose.prod.yml up</i></li>
  </ol>

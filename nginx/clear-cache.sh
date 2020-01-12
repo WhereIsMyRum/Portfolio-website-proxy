@@ -2,8 +2,8 @@
 
 set -e
 
-STATIC_CACHE="/var/cache/nginx/static"
-API_CACHE="/var/cache/nginx/api"
+STATIC_CACHE="/var/cache/nginx/static/"
+API_CACHE="/var/cache/nginx/api/"
 
 if [[ -f $STATIC_CACHE ]]
 then

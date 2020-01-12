@@ -6,7 +6,7 @@
 <h3 class="what">What</h3>
 <div class="what">The website needed to rely on containerization and use as many different technologies at I could find suitable and not an overkill at the same time, in order to learn as much as possible. This is how an app, that uses:
   <ul>
-    <li>Docker for conatinerization</li>
+    <li>Docker for containerization</li>
     <li>Nginx as reversed proxy and cache</li>
     <li>Redis as backend cache</li>
     <li>AWS EC2 as the deployment server</li>

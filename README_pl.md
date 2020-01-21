@@ -1,22 +1,21 @@
 <html>
 <body>
 <h1 class="title">Portfolio Website</h1>
-<h3 class="why">Why</h3>
-<p class="why">I had my own portfolio website since January 2019. I always included a section that was supposed to contain my projects, but I never actually implemented it. It was always "in progress" or "coming soon". Finally I decided to make it easy for myself and sort of "automate" the whole process of creating the projects section. That's how this project originated.</p>
-<h3 class="what">What</h3>
-<div class="what">I wanted the website to utilize containerization and use as many different technologies as I could find suitable, in order to learn as much as possible. This is how an app, that uses:
+<h3 class="why">Powód</h3>
+<p class="why">Miałem własną stronę portfolio od Stycznia 2019. Zawsze zawierała ona sekcję, która miała prezentować moje projekty, ale w żadnej z wersji sekcja ta nie została zaimplementowana, była wiecznie "in progress" albo "coming soon". W końcu zdecydowałem, że najprościej będzie bezpośrednio wykorzystać moje repozytoria, automatyzując niejako cały proces tworzenia sekcji z projektami. I w ten sposób narodził się niniejszy projekt.</p>
+<h3 class="what">Cel</h3>
+<div class="what">Celem było stworzenie strony korzystającej z Dockera i konteneryzacja, używającej jak największej ilości technologii, pasujących do zakresu i celu projektu, by równocześnie nauczyć się jak najwięcej. Tak powstała plikacja korzystająca z:
   <ul>
-    <li>Docker for containerization</li>
-    <li>Nginx as reversed proxy and cache</li>
-    <li>Redis as backend cache</li>
-    <li>AWS EC2 as the deployment server</li>
-    <li>Circle CI to automatise deployment</li>
+    <li>Dockera celem konteneryzacji</li>
+    <li>Nginx jako reversed proxy oraz proxy cache</li>
+    <li>Redis jako backend cache</li>
+    <li>AWS EC2 jako serwera</li>
+    <li>Circle CI celem automatyzacji deploymentu</li>
   </ul>
-was created.
   </div>
-<h3 class="how">How</h3>
-<p class="how">Once code is pushed to github (from any repo related to the porject), Circle CI pulls the code and builds new docker images. The images are pushed to docker hub and Circle CI triggers a deployment script on the server. The server pulls the updated images, restarts the containers, and if the updated was made to either the frontend or the backend container, both redis and nginx cache is cleared.&nbsp; When a request hits the server, it hits the outer Nginx reversed proxy, which is responsible for encrypting the traffic (HTTPS). Request is forwarded to docker, where it hits another Nginx reversed proxy. This proxy is responsible for caching, both files and data received from the backend API, as well as forwarding the request to either the frontend container or the backend container, based on the URL path. If the request hits the backend, the backend first checks the redis cache to see if the requested data is cached. If it is not, is sends a request to github.&nbsp;At some point I realized that the redis cache is not really necessary, as the data is practically static, and the Nginx cache would suffice. Still, it was a good experience working a bit with Redis.</p>
-<h3 class="technologies">Technologies used</h3>
+<h3 class="how">Wykonanie</h3>
+<p class="how">Za każdym razem kiedy kod w którymkolwiek z repozytoriów związanych z projektem jest aktualizowany, Circle CI ściąga nowy kod i tworzy nowy obraz Dockera. Obraz jest wysyłany to repozytorium Dockera a następnie Circle CI uruchamia skrypt do deploymentu na serwerze. Serwer pobiera zaktualizowane obrazy, restartuje odpowiednie kontenery, i jeśli aktualizowaniu uległ kontener frontendu lub backendu, cache zarówno Nginx jak i Redis są czyszczone.&nbsp;Kiedy zapytanie dociera do serwera, najpierw trafia do zewnętrznego proxy Nginx, który odpowiada za szyfrowanie (HTTPS). Zapytania są przesyłane dalej do Dockera i trafiają do wewnętrznego proxy Nginx. To proxy jest odpowiedzialne za caching, zarówno plików jak i danych otrzymanych od backendu, oraz routowanie zapytań do odpowiednich kontenerów (backend/frontend), na podstawie URL. Jeśli zapytanie dociera do backendu, sprawdza on najpierw cache redisa. Jeśli żądane dana nie znajdują się w cache, backend wysyła zapytanie do API githuba.&nbsp;W pewnym momencie uświadomiłem sobie, że cache redisa nie jest niezbędne, gdyż w zupełności wystarczyłoby cache dostępne w Ngninx, jako że dane są w zasadzie statyczne. Wciąż, było to całkiem ciekawego doświadczenie i pozwoliło mi nieco poznać Redis.</p>
+<h3 class="technologies">Zastosowane technologie</h3>
 <ul class="technologies">
   <li class="technologies" hover="Docker">Docker</li>
   <li class="technologies" hover="Nginx">Nginx</li>
@@ -25,17 +24,18 @@ was created.
    <li class="technologies" hover="Circle CI">Circle CI</li>
    <li class="technologies" hover="Bash">Bash</li>
 </ul>
-<h3 class="usage">How to use</h3>
-<div class="usage">To run the project:
+<h3 class="usage">Jak korzystać</h3>
+<div class="usage">Aby uruchomić projekt:
  <ol>
-   <li>Pull this repo</li>
-   <li>Into the folder that contains the docker-compose.yml file, pull portfolio-frontend and portfolio-backend repos</li>
-   <li>Add neccessary hosts file entries (the url is http://frontend.docker)</li>
-   <li>To run the project, simply type <i>docker-compose up</i> and the containers should start.</li>
-   <li>To run the production build, type  <i>docker-compose -f docker-compose.prod.yml up</i></li>
+   <li>Ściągnij niniejsze repozytorium</li>
+   <li>Zainstaluje Dockera</li>
+   <li>Do folderu zawierającego plik docker-compose.yml ściągnij repozytoria portfolio-backend oraz portfolio-frontend</li>
+   <li>Dodaj niezbędne pozycje w pliku hosts (URL z którego korzystamy to http://frontend.docker)</li>
+   <li>Aby uruchomić projekt, użyj komendy <i>docker-compose up</i>.</li>
+   <li>Aby uruchomić aplikację w środowisku produkcji, użyj komendy  <i>docker-compose -f docker-compose.prod.yml up</i></li>
  </ol>
   </div>
 <hr>
-<small class="created">Created: December 2019</small>
+<small class="created">Data powstania: December 2019</small>
 </body>
 </html>

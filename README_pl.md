@@ -36,6 +36,6 @@
  </ol>
   </div>
 <hr>
-<small class="created">Data powstania: December 2019</small>
+<small class="created">Data powstania: Grudzień 2019</small>
 </body>
 </html>

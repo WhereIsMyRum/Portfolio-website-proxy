@@ -26,6 +26,8 @@ services:
         restart: always
         depends_on: 
             - backend
+        environment: 
+            - ROOT_URL=https://www.piotrpolcik.pl
 
     backend:
         image: whereismyrum/portfolio-backend:latest
@@ -37,3 +39,5 @@ services:
             - redis
         environment: 
             - REDIS_URL=redis://cache
+            - ROOT_URL=https://www.piotrpolcik.pl
+

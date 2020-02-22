@@ -29,6 +29,8 @@ services:
         restart: always
         depends_on: 
             - backend
+        environment: 
+            - ROOT_URL=http://frontend.docker
 
     backend:
         build: ./backend
@@ -42,6 +44,7 @@ services:
             - mongo
         environment: 
             - REDIS_URL=redis://cache
+            - ROOT_URL=http://frontend.docker
 
     mongo:
         image: mongo:latest
@@ -50,6 +53,8 @@ services:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: example
             MONGO_INITDB_DATABASE: page
+        volumes:
+            - mongo-db:/data/db
 
     mongo-express:
         image: mongo-express:latest
@@ -59,3 +64,6 @@ services:
         environment:
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
             ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+volumes:
+    mongo-db:

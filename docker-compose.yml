@@ -40,6 +40,7 @@ services:
             - backend
         environment:
             - ROOT_URL=http://blog.docker
+            - SITE_URL=https://www.piotrpolcik.pl
 
     backend:
         build: ./backend

@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-    nginx:
+    proxy:
         image: nginx:latest
         ports:
             - 6895:443
@@ -11,7 +11,7 @@ services:
         restart: always
         depends_on:
             - frontend
-            - backend
+            - website-api
 
     redis:
         image: redis:latest
@@ -25,11 +25,11 @@ services:
         command: "npm run start"
         restart: always
         depends_on: 
-            - backend
+            - website-api
         environment: 
             - ROOT_URL=https://www.piotrpolcik.pl
 
-    backend:
+    website-api:
         image: whereismyrum/portfolio-backend:latest
         command: "npm run start"
         volumes:

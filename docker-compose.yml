@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-    nginx:
+    proxy:
         image: nginx:latest
         ports:
             - 80:80
@@ -12,7 +12,7 @@ services:
         restart: always
         depends_on:
             - frontend
-            - backend
+            - website-api
 
     redis:
         image: redis:latest
@@ -22,32 +22,32 @@ services:
 
 
     frontend:
-        build: ./frontend
+        build: ../frontend
         command: "npm run dev"
         volumes: 
-            - ./frontend/app/:/usr/src/app/
+            - ../frontend/app/:/usr/src/app/
         restart: always
         depends_on: 
-            - backend
+            - website-api
 
     blog:
-        build: ./weebitdevblog
+        build: ../weebitdevblog
         command: "npm run dev"
         volumes:
-            - ./weebitdevblog/app/:/usr/src/app/
+            - ../weebitdevblog/app/:/usr/src/app/
         restart: always
         depends_on:
-            - backend
+            - website-api
         environment:
             - ROOT_URL=http://blog.docker
             - SITE_URL=https://www.piotrpolcik.pl
 
-    backend:
-        build: ./backend
+    website-api:
+        build: ../website-api
         command: bash -c "npm install && npm run dev"
         volumes:
-            - ./backend/app/:/usr/src/
-            - ./backend/.aws/:/root/.aws/
+            - ../website-api/app/:/usr/src/
+            - ../website-api/.aws/:/root/.aws/
         restart: always
         depends_on:
             - redis
@@ -56,6 +56,13 @@ services:
             - REDIS_URL=redis://cache
             - SITE_URL=http://frontend.docker
             - BLOG_URL=http://blog.docker
+
+    blog-api:
+        build: ../blog-api
+        command: "/app/main"
+        volumes: 
+            - ../blog-api/app/:/usr/src/
+            - ../blog-api/.aws/:/root/.aws/
 
 
     mongo:

@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1 class="title">Portfolio Website</h1>
+<h1 class="title">Portfolio Website Proxy</h1>
 <h3 class="why">Powód</h3>
 <p class="why">Miałem własną stronę portfolio od Stycznia 2019. Zawsze zawierała ona sekcję, która miała prezentować moje projekty, ale w żadnej z wersji sekcja ta nie została zaimplementowana, była wiecznie "in progress" albo "coming soon". W końcu zdecydowałem, że najprościej będzie bezpośrednio wykorzystać moje repozytoria, automatyzując niejako cały proces tworzenia sekcji z projektami. I w ten sposób narodził się niniejszy projekt.</p>
 <h3 class="what">Cel</h3>

@@ -58,11 +58,16 @@ services:
             - BLOG_URL=http://blog.docker
 
     blog-api:
-        build: ../blog-api
-        command: "/app/main"
+        build:
+            context: ../blog-api
+            dockerfile: ./Dockerfiles/dev/Dockerfile
+        command: bash -c "nodemon --exec go run ./main.go --signal SIGTERM"
         volumes: 
-            - ../blog-api/app/:/usr/src/
-            - ../blog-api/.aws/:/root/.aws/
+            - ../blog-api/cmd/web/main.go:/go/src/cmd/web/main.go
+            - ../blog-api/pkg/controllers/:/go/src/pkg/controllers/
+            - ../blog-api/pkg/routers/:/go/src/pkg/routers/
+            - ../blog-api/pkg/models/:/go/src/pkg/models/
+            - ../blog-api/pkg/.aws/:/root/.aws/
 
 
     mongo:

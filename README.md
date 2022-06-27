@@ -4,7 +4,7 @@
 <h3 class="why">Why</h3>
 <p class="why">I had my own portfolio website since January 2019. I always included a section that was supposed to contain my projects, but I never actually implemented it. It was always "in progress" or "coming soon". Finally I decided to make it easy for myself and sort of "automate" the whole process of creating the projects section. That's how this project originated.</p>
 <h3 class="what">What</h3>
-<div class="what">I wanted the website to utilize containerization and use as many different technologies as I could find suitable, in order to learn as much as possible. This is how an app, that uses:
+<div class="what">I wanted the website to utilize containerization and use as many different technologies as I found suitable, in order to learn as much as possible. This is how an app, that uses:
   <ul>
     <li>Docker for containerization</li>
     <li>Nginx as reversed proxy and cache</li>

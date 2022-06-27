@@ -6,7 +6,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "a1:a0:4a:f3:82:af:46:2e:bc:de:3d:a8:a1:54:2f:8b"
+            - "15:c3:00:4a:48:1d:4c:fe:93:df:ef:e9:c2:3f:2c:d9"
       - run:
           name: Deploy app to AWS EC2 via Docker
           command: |
